@@ -55,14 +55,14 @@ stat.prototype.addSeqs = function addSeqs(seqs) {
 
 stat.prototype.resetSeqs = function reset(seqs) {
   this.seqs = [];
-
   // support sequence models
-  if (! seqs instanceof Array || "at" in seqs) {
+  if ("at" in seqs && "pluck" in seqs) {
     this.mseqs = seqs;
     var mSeqsPluck = function() {
       var seqArr = this.mseqs.pluck("seq");
       this.resetSeqs(seqArr);
     };
+    seqs.on("add change reset ", mSeqsPluck, this);
     mSeqsPluck.call(this);
   } else {
     this.addSeqs(seqs);
