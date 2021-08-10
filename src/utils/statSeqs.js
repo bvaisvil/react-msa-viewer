@@ -63,7 +63,6 @@ stat.prototype.resetSeqs = function reset(seqs) {
       var seqArr = this.mseqs.pluck("seq");
       this.resetSeqs(seqArr);
     };
-    seqs.on("add change reset ", mSeqsPluck, this);
     mSeqsPluck.call(this);
   } else {
     this.addSeqs(seqs);
