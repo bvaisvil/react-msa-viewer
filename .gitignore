@@ -23,8 +23,5 @@ yarn-error.log*
 # storybook
 /storybook-static
 
-# distribution files
-/dist
-
 # cache
 .cache

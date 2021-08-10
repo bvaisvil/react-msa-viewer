@@ -7,9 +7,5 @@ src/stories
 .travis.yml
 dist/statistics.html
 dist/preamble.txt
-dist/index.esm.js
-dist/index.esm.js.map
-dist/index.umd.js
-dist/index.umd.js.map
 coverage/
 .cache
