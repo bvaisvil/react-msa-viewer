@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 
 import Canvas from '../../drawing/canvas';
 
-import createRef from 'create-react-ref/lib/createRef';
+import createRef from 'react';
 
 /**
  * Constructs a drawable canvas (e.g. HTML Canvas or WebGL) and provides it as

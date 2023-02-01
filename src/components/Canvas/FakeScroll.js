@@ -9,7 +9,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-import createRef from 'create-react-ref/lib/createRef';
+import createRef from 'react';
 import { movePosition } from '../../store/positionReducers';
 import withPositionStore from '../../store/withPositionStore';
 

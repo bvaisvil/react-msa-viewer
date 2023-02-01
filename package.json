@@ -21,8 +21,7 @@
   "main": "dist/index.umd.min.js",
   "module": "dist/index.esm.min.js",
   "dependencies": {
-    "babel-preset-es2015": "^6.24.1",
-    "create-react-ref": "^0.1.0",
+    "@babel/preset-env": "^7.1.0",
     "lodash-es": "^4.17.11",
     "plotly-icons": "^1.2.2",
     "prop-types": "^15.6.2",

@@ -7,7 +7,7 @@
 */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import createRef from 'create-react-ref/lib/createRef';
+import createRef from 'react';
 
 import withPositionStore from '../../store/withPositionStore';
 
