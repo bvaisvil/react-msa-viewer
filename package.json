@@ -22,7 +22,7 @@
   "module": "dist/index.esm.min.js",
   "dependencies": {
     "@babel/preset-env": "^7.1.0",
-    "lodash-es": "^4.17.11",
+    "lodash-es": "^4.17.20",
     "plotly-icons": "^1.2.2",
     "prop-types": "^15.6.2",
     "react-redux": "^5.1.0",
