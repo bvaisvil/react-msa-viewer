@@ -15,7 +15,6 @@ import {
 
 import Mouse from '../../utils/mouse';
 
-import ModBar from '../ModBar';
 import FakeScroll from './FakeScroll';
 import requestAnimation from '../../utils/requestAnimation';
 import autobind from '../../utils/autobind';
@@ -349,7 +348,7 @@ class DraggingComponent extends PureComponent {
           {...otherProps}
       >
         { showModBar && (
-            <ModBar style={modBar}> Plotly Modbar</ModBar>
+          <div></div>
         )}
         <canvas
           style={canvasStyle}
