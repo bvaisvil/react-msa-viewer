@@ -7846,7 +7846,7 @@
     "sequences": "updateSequences"
   };
   Object.keys(MSAPropTypes).forEach(function (key) {
-    if (!(key in reduxActions) && MSAPropTypes[key] !== PropTypes.func) {
+    if (!(key in reduxActions)) {
       reduxActions[key] = 'updateProp';
     }
   });
