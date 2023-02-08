@@ -7,7 +7,7 @@
 */
 
 import React, { Component } from 'react';
-import createRef from 'react';
+import createRef from 'create-react-ref/lib/createRef';
 
 import PropTypes from 'prop-types';
 

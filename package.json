@@ -22,10 +22,11 @@
   "module": "dist/index.esm.min.js",
   "dependencies": {
     "@babel/preset-env": "^7.1.0",
+    "create-react-ref": "^0.1.0",
     "lodash-es": "^4.17.20",
     "prop-types": "^15.6.2",
-    "react-redux": "^5.1.0",
-    "redux": "^4.0.1",
+    "react-redux": "5.1.0",
+    "redux": "4.0.1",
     "reselect": "^4.0.0"
   },
   "scripts": {

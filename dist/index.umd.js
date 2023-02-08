@@ -266,10 +266,18 @@
     throw new TypeError("Invalid attempt to destructure non-iterable instance");
   }
 
+  function _setPrototypeOf$1(o, p) {
+    _setPrototypeOf$1 = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function _setPrototypeOf(o, p) {
+      o.__proto__ = p;
+      return o;
+    };
+    return _setPrototypeOf$1(o, p);
+  }
+
   function _inheritsLoose$1(subClass, superClass) {
     subClass.prototype = Object.create(superClass.prototype);
     subClass.prototype.constructor = subClass;
-    subClass.__proto__ = superClass;
+    _setPrototypeOf$1(subClass, superClass);
   }
 
   var subscriptionShape = PropTypes.shape({
@@ -341,25 +349,21 @@
     if (self === void 0) {
       throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
     }
-
     return self;
   }
 
   function _extends$1() {
-    _extends$1 = Object.assign || function (target) {
+    _extends$1 = Object.assign ? Object.assign.bind() : function (target) {
       for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];
-
         for (var key in source) {
           if (Object.prototype.hasOwnProperty.call(source, key)) {
             target[key] = source[key];
           }
         }
       }
-
       return target;
     };
-
     return _extends$1.apply(this, arguments);
   }
 
@@ -368,13 +372,11 @@
     var target = {};
     var sourceKeys = Object.keys(source);
     var key, i;
-
     for (i = 0; i < sourceKeys.length; i++) {
       key = sourceKeys[i];
       if (excluded.indexOf(key) >= 0) continue;
       target[key] = source[key];
     }
-
     return target;
   }
 
@@ -388,37 +390,51 @@
   	return module = { exports: {} }, fn(module, module.exports), module.exports;
   }
 
-  var reactIs_production_min = createCommonjsModule(function (module, exports) {
-  Object.defineProperty(exports,"__esModule",{value:!0});
-  var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.concurrent_mode"):60111,m=b?Symbol.for("react.forward_ref"):60112,n=b?Symbol.for("react.suspense"):60113,q=b?Symbol.for("react.memo"):60115,r=b?Symbol.for("react.lazy"):
-  60116;function t(a){if("object"===typeof a&&null!==a){var p=a.$$typeof;switch(p){case c:switch(a=a.type,a){case l:case e:case g:case f:return a;default:switch(a=a&&a.$$typeof,a){case k:case m:case h:return a;default:return p}}case d:return p}}}function u(a){return t(a)===l}exports.typeOf=t;exports.AsyncMode=l;exports.ConcurrentMode=l;exports.ContextConsumer=k;exports.ContextProvider=h;exports.Element=c;exports.ForwardRef=m;exports.Fragment=e;exports.Profiler=g;exports.Portal=d;
-  exports.StrictMode=f;exports.isValidElementType=function(a){return "string"===typeof a||"function"===typeof a||a===e||a===l||a===g||a===f||a===n||"object"===typeof a&&null!==a&&(a.$$typeof===r||a.$$typeof===q||a.$$typeof===h||a.$$typeof===k||a.$$typeof===m)};exports.isAsyncMode=function(a){return u(a)};exports.isConcurrentMode=u;exports.isContextConsumer=function(a){return t(a)===k};exports.isContextProvider=function(a){return t(a)===h};
-  exports.isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};exports.isForwardRef=function(a){return t(a)===m};exports.isFragment=function(a){return t(a)===e};exports.isProfiler=function(a){return t(a)===g};exports.isPortal=function(a){return t(a)===d};exports.isStrictMode=function(a){return t(a)===f};
-  });
+  /** @license React v16.13.1
+   * react-is.production.min.js
+   *
+   * Copyright (c) Facebook, Inc. and its affiliates.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE file in the root directory of this source tree.
+   */
+  var b="function"===typeof Symbol&&Symbol.for,c=b?Symbol.for("react.element"):60103,d=b?Symbol.for("react.portal"):60106,e=b?Symbol.for("react.fragment"):60107,f=b?Symbol.for("react.strict_mode"):60108,g=b?Symbol.for("react.profiler"):60114,h=b?Symbol.for("react.provider"):60109,k=b?Symbol.for("react.context"):60110,l=b?Symbol.for("react.async_mode"):60111,m=b?Symbol.for("react.concurrent_mode"):60111,n=b?Symbol.for("react.forward_ref"):60112,p=b?Symbol.for("react.suspense"):60113,q=b?
+  Symbol.for("react.suspense_list"):60120,r=b?Symbol.for("react.memo"):60115,t=b?Symbol.for("react.lazy"):60116,v=b?Symbol.for("react.block"):60121,w=b?Symbol.for("react.fundamental"):60117,x=b?Symbol.for("react.responder"):60118,y=b?Symbol.for("react.scope"):60119;
+  function z(a){if("object"===typeof a&&null!==a){var u=a.$$typeof;switch(u){case c:switch(a=a.type,a){case l:case m:case e:case g:case f:case p:return a;default:switch(a=a&&a.$$typeof,a){case k:case n:case t:case r:case h:return a;default:return u}}case d:return u}}}function A(a){return z(a)===m}var AsyncMode=l;var ConcurrentMode=m;var ContextConsumer=k;var ContextProvider=h;var Element=c;var ForwardRef=n;var Fragment=e;var Lazy=t;var Memo=r;var Portal=d;
+  var Profiler=g;var StrictMode=f;var Suspense=p;var isAsyncMode=function(a){return A(a)||z(a)===l};var isConcurrentMode=A;var isContextConsumer=function(a){return z(a)===k};var isContextProvider=function(a){return z(a)===h};var isElement=function(a){return "object"===typeof a&&null!==a&&a.$$typeof===c};var isForwardRef=function(a){return z(a)===n};var isFragment=function(a){return z(a)===e};var isLazy=function(a){return z(a)===t};
+  var isMemo=function(a){return z(a)===r};var isPortal=function(a){return z(a)===d};var isProfiler=function(a){return z(a)===g};var isStrictMode=function(a){return z(a)===f};var isSuspense=function(a){return z(a)===p};
+  var isValidElementType=function(a){return "string"===typeof a||"function"===typeof a||a===e||a===m||a===g||a===f||a===p||a===q||"object"===typeof a&&null!==a&&(a.$$typeof===t||a.$$typeof===r||a.$$typeof===h||a.$$typeof===k||a.$$typeof===n||a.$$typeof===w||a.$$typeof===x||a.$$typeof===y||a.$$typeof===v)};var typeOf=z;
 
-  unwrapExports(reactIs_production_min);
-  var reactIs_production_min_1 = reactIs_production_min.typeOf;
-  var reactIs_production_min_2 = reactIs_production_min.AsyncMode;
-  var reactIs_production_min_3 = reactIs_production_min.ConcurrentMode;
-  var reactIs_production_min_4 = reactIs_production_min.ContextConsumer;
-  var reactIs_production_min_5 = reactIs_production_min.ContextProvider;
-  var reactIs_production_min_6 = reactIs_production_min.Element;
-  var reactIs_production_min_7 = reactIs_production_min.ForwardRef;
-  var reactIs_production_min_8 = reactIs_production_min.Fragment;
-  var reactIs_production_min_9 = reactIs_production_min.Profiler;
-  var reactIs_production_min_10 = reactIs_production_min.Portal;
-  var reactIs_production_min_11 = reactIs_production_min.StrictMode;
-  var reactIs_production_min_12 = reactIs_production_min.isValidElementType;
-  var reactIs_production_min_13 = reactIs_production_min.isAsyncMode;
-  var reactIs_production_min_14 = reactIs_production_min.isConcurrentMode;
-  var reactIs_production_min_15 = reactIs_production_min.isContextConsumer;
-  var reactIs_production_min_16 = reactIs_production_min.isContextProvider;
-  var reactIs_production_min_17 = reactIs_production_min.isElement;
-  var reactIs_production_min_18 = reactIs_production_min.isForwardRef;
-  var reactIs_production_min_19 = reactIs_production_min.isFragment;
-  var reactIs_production_min_20 = reactIs_production_min.isProfiler;
-  var reactIs_production_min_21 = reactIs_production_min.isPortal;
-  var reactIs_production_min_22 = reactIs_production_min.isStrictMode;
+  var reactIs_production_min = {
+  	AsyncMode: AsyncMode,
+  	ConcurrentMode: ConcurrentMode,
+  	ContextConsumer: ContextConsumer,
+  	ContextProvider: ContextProvider,
+  	Element: Element,
+  	ForwardRef: ForwardRef,
+  	Fragment: Fragment,
+  	Lazy: Lazy,
+  	Memo: Memo,
+  	Portal: Portal,
+  	Profiler: Profiler,
+  	StrictMode: StrictMode,
+  	Suspense: Suspense,
+  	isAsyncMode: isAsyncMode,
+  	isConcurrentMode: isConcurrentMode,
+  	isContextConsumer: isContextConsumer,
+  	isContextProvider: isContextProvider,
+  	isElement: isElement,
+  	isForwardRef: isForwardRef,
+  	isFragment: isFragment,
+  	isLazy: isLazy,
+  	isMemo: isMemo,
+  	isPortal: isPortal,
+  	isProfiler: isProfiler,
+  	isStrictMode: isStrictMode,
+  	isSuspense: isSuspense,
+  	isValidElementType: isValidElementType,
+  	typeOf: typeOf
+  };
 
   var reactIs = createCommonjsModule(function (module) {
 
@@ -428,39 +444,60 @@
   });
   var reactIs_1 = reactIs.isValidElementType;
 
-  var _ReactIs$ForwardRef;
-
-  function _defineProperty$1(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
   /**
    * Copyright 2015, Yahoo! Inc.
    * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
    */
-
-
   var REACT_STATICS = {
-      childContextTypes: true,
-      contextTypes: true,
-      defaultProps: true,
-      displayName: true,
-      getDefaultProps: true,
-      getDerivedStateFromProps: true,
-      mixins: true,
-      propTypes: true,
-      type: true
+    childContextTypes: true,
+    contextType: true,
+    contextTypes: true,
+    defaultProps: true,
+    displayName: true,
+    getDefaultProps: true,
+    getDerivedStateFromError: true,
+    getDerivedStateFromProps: true,
+    mixins: true,
+    propTypes: true,
+    type: true
   };
-
   var KNOWN_STATICS = {
-      name: true,
-      length: true,
-      prototype: true,
-      caller: true,
-      callee: true,
-      arguments: true,
-      arity: true
+    name: true,
+    length: true,
+    prototype: true,
+    caller: true,
+    callee: true,
+    arguments: true,
+    arity: true
   };
+  var FORWARD_REF_STATICS = {
+    '$$typeof': true,
+    render: true,
+    defaultProps: true,
+    displayName: true,
+    propTypes: true
+  };
+  var MEMO_STATICS = {
+    '$$typeof': true,
+    compare: true,
+    defaultProps: true,
+    displayName: true,
+    propTypes: true,
+    type: true
+  };
+  var TYPE_STATICS = {};
+  TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+  TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
 
-  var TYPE_STATICS = _defineProperty$1({}, reactIs.ForwardRef, (_ReactIs$ForwardRef = {}, _defineProperty$1(_ReactIs$ForwardRef, '$$typeof', true), _defineProperty$1(_ReactIs$ForwardRef, 'render', true), _ReactIs$ForwardRef));
+  function getStatics(component) {
+    // React v16.11 and below
+    if (reactIs.isMemo(component)) {
+      return MEMO_STATICS;
+    } // React v16.12 and above
+
+
+    return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
+  }
 
   var defineProperty = Object.defineProperty;
   var getOwnPropertyNames = Object.getOwnPropertyNames;
@@ -468,42 +505,41 @@
   var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
   var getPrototypeOf = Object.getPrototypeOf;
   var objectPrototype = Object.prototype;
-
   function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-      if (typeof sourceComponent !== 'string') {
-          // don't hoist over string (html) components
+    if (typeof sourceComponent !== 'string') {
+      // don't hoist over string (html) components
+      if (objectPrototype) {
+        var inheritedComponent = getPrototypeOf(sourceComponent);
 
-          if (objectPrototype) {
-              var inheritedComponent = getPrototypeOf(sourceComponent);
-              if (inheritedComponent && inheritedComponent !== objectPrototype) {
-                  hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
-              }
-          }
-
-          var keys = getOwnPropertyNames(sourceComponent);
-
-          if (getOwnPropertySymbols) {
-              keys = keys.concat(getOwnPropertySymbols(sourceComponent));
-          }
-
-          var targetStatics = TYPE_STATICS[targetComponent['$$typeof']] || REACT_STATICS;
-          var sourceStatics = TYPE_STATICS[sourceComponent['$$typeof']] || REACT_STATICS;
-
-          for (var i = 0; i < keys.length; ++i) {
-              var key = keys[i];
-              if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
-                  var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
-                  try {
-                      // Avoid failures from read-only properties
-                      defineProperty(targetComponent, key, descriptor);
-                  } catch (e) {}
-              }
-          }
-
-          return targetComponent;
+        if (inheritedComponent && inheritedComponent !== objectPrototype) {
+          hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+        }
       }
 
-      return targetComponent;
+      var keys = getOwnPropertyNames(sourceComponent);
+
+      if (getOwnPropertySymbols) {
+        keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+      }
+
+      var targetStatics = getStatics(targetComponent);
+      var sourceStatics = getStatics(sourceComponent);
+
+      for (var i = 0; i < keys.length; ++i) {
+        var key = keys[i];
+
+        if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+          var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+
+          try {
+            // Avoid failures from read-only properties
+            defineProperty(targetComponent, key, descriptor);
+          } catch (e) {}
+        }
+      }
+    }
+
+    return targetComponent;
   }
 
   var hoistNonReactStatics_cjs = hoistNonReactStatics;
@@ -3097,7 +3133,7 @@
   var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
 
   /**
-   * Gets the value at `key`, unless `key` is "__proto__".
+   * Gets the value at `key`, unless `key` is "__proto__" or "constructor".
    *
    * @private
    * @param {Object} object The object to query.
@@ -3105,6 +3141,10 @@
    * @returns {*} Returns the property value.
    */
   function safeGet(object, key) {
+    if (key === 'constructor' && typeof object[key] === 'function') {
+      return;
+    }
+
     if (key == '__proto__') {
       return;
     }
@@ -3326,7 +3366,7 @@
    * _.keysIn(new Foo);
    * // => ['a', 'b', 'c'] (iteration order is not guaranteed)
    */
-  function keysIn$1(object) {
+  function keysIn(object) {
     return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
   }
 
@@ -3355,7 +3395,7 @@
    * // => { 'a': 1, 'b': 2, 'c': 3 }
    */
   function toPlainObject(value) {
-    return copyObject(value, keysIn$1(value));
+    return copyObject(value, keysIn(value));
   }
 
   /**
@@ -3451,8 +3491,8 @@
       return;
     }
     baseFor(source, function(srcValue, key) {
+      stack || (stack = new Stack);
       if (isObject(srcValue)) {
-        stack || (stack = new Stack);
         baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
       }
       else {
@@ -3465,7 +3505,7 @@
         }
         assignMergeValue(object, key, newValue);
       }
-    }, keysIn$1);
+    }, keysIn);
   }
 
   /**
@@ -4703,10 +4743,11 @@
     if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
       return false;
     }
-    // Assume cyclic values are equal.
-    var stacked = stack.get(array);
-    if (stacked && stack.get(other)) {
-      return stacked == other;
+    // Check that cyclic values are equal.
+    var arrStacked = stack.get(array);
+    var othStacked = stack.get(other);
+    if (arrStacked && othStacked) {
+      return arrStacked == other && othStacked == array;
     }
     var index = -1,
         result = true,
@@ -5051,10 +5092,11 @@
         return false;
       }
     }
-    // Assume cyclic values are equal.
-    var stacked = stack.get(object);
-    if (stacked && stack.get(other)) {
-      return stacked == other;
+    // Check that cyclic values are equal.
+    var objStacked = stack.get(object);
+    var othStacked = stack.get(other);
+    if (objStacked && othStacked) {
+      return objStacked == other && othStacked == object;
     }
     var result = true;
     stack.set(object, other);
@@ -6142,6 +6184,10 @@
       var key = toKey(path[index]),
           newValue = value;
 
+      if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+        return object;
+      }
+
       if (index != lastIndex) {
         var objValue = nested[key];
         newValue = customizer ? customizer(objValue, key, nested) : undefined;
@@ -6772,11 +6818,42 @@
     return MSAPositionConsumer;
   }
 
+  /** Used to match a single whitespace character. */
+  var reWhitespace = /\s/;
+
+  /**
+   * Used by `_.trim` and `_.trimEnd` to get the index of the last non-whitespace
+   * character of `string`.
+   *
+   * @private
+   * @param {string} string The string to inspect.
+   * @returns {number} Returns the index of the last non-whitespace character.
+   */
+  function trimmedEndIndex(string) {
+    var index = string.length;
+
+    while (index-- && reWhitespace.test(string.charAt(index))) {}
+    return index;
+  }
+
+  /** Used to match leading whitespace. */
+  var reTrimStart = /^\s+/;
+
+  /**
+   * The base implementation of `_.trim`.
+   *
+   * @private
+   * @param {string} string The string to trim.
+   * @returns {string} Returns the trimmed string.
+   */
+  function baseTrim(string) {
+    return string
+      ? string.slice(0, trimmedEndIndex(string) + 1).replace(reTrimStart, '')
+      : string;
+  }
+
   /** Used as references for various `Number` constants. */
   var NAN = 0 / 0;
-
-  /** Used to match leading and trailing whitespace. */
-  var reTrim = /^\s+|\s+$/g;
 
   /** Used to detect bad signed hexadecimal string values. */
   var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
@@ -6827,7 +6904,7 @@
     if (typeof value != 'string') {
       return value === 0 ? value : +value;
     }
-    value = value.replace(reTrim, '');
+    value = baseTrim(value);
     var isBinary = reIsBinary.test(value);
     return (isBinary || reIsOctal.test(value))
       ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
@@ -6907,7 +6984,8 @@
   }
 
   /* Built-in method references for those with the same name as other `lodash` methods. */
-  var nativeMin = Math.min;
+  var nativeIsFinite = root$1.isFinite,
+      nativeMin = Math.min;
 
   /**
    * Creates a function like `_.round`.
@@ -6921,7 +6999,7 @@
     return function(number, precision) {
       number = toNumber(number);
       precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
-      if (precision) {
+      if (precision && nativeIsFinite(number)) {
         // Shift with exponential notation to avoid floating-point issues.
         // See [MDN](https://mdn.io/round#Examples) for more details.
         var pair = (toString(number) + 'e').split('e'),
@@ -7159,7 +7237,7 @@
    * @returns {Object} Returns `object`.
    */
   function baseAssignIn(object, source) {
-    return object && copyObject(source, keysIn$1(source), object);
+    return object && copyObject(source, keysIn(source), object);
   }
 
   /**
@@ -7214,7 +7292,7 @@
    * @returns {Array} Returns the array of property names and symbols.
    */
   function getAllKeysIn(object) {
-    return baseGetAllKeys(object, keysIn$1, getSymbolsIn);
+    return baseGetAllKeys(object, keysIn, getSymbolsIn);
   }
 
   /** Used for built-in method references. */
@@ -7548,16 +7626,10 @@
       value.forEach(function(subValue) {
         result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
       });
-
-      return result;
-    }
-
-    if (isMap(value)) {
+    } else if (isMap(value)) {
       value.forEach(function(subValue, key) {
         result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
       });
-
-      return result;
     }
 
     var keysFunc = isFull
@@ -10156,7 +10228,7 @@
    * // => { 'a': 1, 'b': 2, 'c': 3, 'd': 4 }
    */
   var assignIn = createAssigner(function(object, source) {
-    copyObject(source, keysIn$1(source), object);
+    copyObject(source, keysIn(source), object);
   });
 
   /**
@@ -10893,234 +10965,6 @@
     return delta;
   });
 
-  var IconBase = createCommonjsModule(function (module, exports) {
-
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-
-
-  var _react2 = _interopRequireDefault(React__default);
-
-
-
-  var _propTypes2 = _interopRequireDefault(PropTypes);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-  var PlotlyIconBase = function PlotlyIconBase(_ref) {
-      var children = _ref.children,
-          width = _ref.width,
-          height = _ref.height,
-          _ref$style = _ref.style,
-          style = _ref$style === undefined ? {} : _ref$style,
-          props = _objectWithoutProperties(_ref, ['children', 'width', 'height', 'style']);
-
-      return _react2.default.createElement('svg', _extends({
-          children: children,
-          fill: 'currentColor',
-          preserveAspectRatio: 'xMidYMid meet',
-          height: height,
-          width: width,
-          style: style
-      }, props));
-  };
-
-  PlotlyIconBase.propTypes = {
-      children: _propTypes2.default.node.isRequired,
-      width: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-      height: _propTypes2.default.oneOfType([_propTypes2.default.number, _propTypes2.default.string]),
-      style: _propTypes2.default.object
-  };
-
-  exports.default = PlotlyIconBase;
-  });
-
-  unwrapExports(IconBase);
-
-  var AutoscaleIcon_1 = createCommonjsModule(function (module, exports) {
-
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-
-
-  var _react2 = _interopRequireDefault(React__default);
-
-
-
-  var _IconBase2 = _interopRequireDefault(IconBase);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  var AutoscaleIcon = function AutoscaleIcon(props) {
-      return _react2.default.createElement(
-          _IconBase2.default,
-          _extends({ viewBox: '0 0 16 16' }, props),
-          _react2.default.createElement('path', { d: 'M4 0H0v4h1V1h3V0zm11 0h-3v1h3v3h1V0h-1zM1 15v-3H0v4h4v-1H1zm14-3v3h-3v1h4v-4h-1zm-2-3l-.008-.003L11.5 10.5 9 8l2.5-2.5L12.971 7H13V3H9v.03l1.5 1.47L8 7 5.5 4.5 7 3.03V3H3v4l1.5-1.5L7 8l-2.5 2.5L3 9v4h4l-1.5-1.5L8 9l2.5 2.5L9 13h4V9z' })
-      );
-  };
-
-  exports.default = AutoscaleIcon;
-  });
-
-  var AutoscaleIcon = unwrapExports(AutoscaleIcon_1);
-
-  var ZoomPlusIcon_1 = createCommonjsModule(function (module, exports) {
-
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-
-
-  var _react2 = _interopRequireDefault(React__default);
-
-
-
-  var _IconBase2 = _interopRequireDefault(IconBase);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  var ZoomPlusIcon = function ZoomPlusIcon(props) {
-      return _react2.default.createElement(
-          _IconBase2.default,
-          _extends({ viewBox: '0 0 16 16' }, props),
-          _react2.default.createElement('path', { d: 'M.013 1.012V15h13.999V1.012H.013zm10.999 7.995H8.013v2.999h-2V9.007h-3V7.008h3V4.01h2v2.998h2.999v1.999z' })
-      );
-  };
-
-  exports.default = ZoomPlusIcon;
-  });
-
-  var ZoomPlusIcon = unwrapExports(ZoomPlusIcon_1);
-
-  var ZoomMinusIcon_1 = createCommonjsModule(function (module, exports) {
-
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-
-
-  var _react2 = _interopRequireDefault(React__default);
-
-
-
-  var _IconBase2 = _interopRequireDefault(IconBase);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  var ZoomMinusIcon = function ZoomMinusIcon(props) {
-      return _react2.default.createElement(
-          _IconBase2.default,
-          _extends({ viewBox: '0 0 16 16' }, props),
-          _react2.default.createElement('path', { d: 'M.004 1v14h14V1h-14zM11 9H3V7h8v2z' })
-      );
-  };
-
-  exports.default = ZoomMinusIcon;
-  });
-
-  var ZoomMinusIcon = unwrapExports(ZoomMinusIcon_1);
-
-  function PlotlyIcon() {
-    // TODO: Not part of plotly-icons
-    return React__default.createElement("svg", {
-      height: "1em",
-      width: "1.542em",
-      viewBox: "0 0 1542 1000"
-    }, React__default.createElement("path", {
-      d: "m0-10h182v-140h-182v140z m228 146h183v-286h-183v286z m225 714h182v-1000h-182v1000z m225-285h182v-715h-182v715z m225 142h183v-857h-183v857z m231-428h182v-429h-182v429z m225-291h183v-138h-183v138z",
-      transform: "matrix(1 0 0 -1 0 850)",
-      fill: "rgb(68, 122, 219)"
-    }));
-  } // TODO: show as soon as the mouse enters
-  // TODO: transition effect
-  // TODO: tooltips
-
-
-  var ModBar =
-  /*#__PURE__*/
-  function (_PureComponent) {
-    _inherits(ModBar, _PureComponent);
-
-    function ModBar() {
-      _classCallCheck(this, ModBar);
-
-      return _possibleConstructorReturn(this, _getPrototypeOf(ModBar).apply(this, arguments));
-    }
-
-    _createClass(ModBar, [{
-      key: "render",
-      value: function render() {
-        var iconWidth = 20;
-        var iconHeight = 20;
-
-        var style = _objectSpread({
-          opacity: 0.9,
-          backgroundColor: "white"
-        }, this.props.style);
-
-        var linkStyle = {
-          position: "relative",
-          fontSize: "16px",
-          padding: "3px 4px",
-          cursor: "pointer",
-          lineHeight: "normal",
-          textDecoration: "none",
-          color: "black"
-        }; // fill with rgba(0, 31, 95, 0.3);
-        //
-        //<a href="" style={linkStyle}>
-        //<SaveIcon width={iconWidth} height={iconHeight} />
-        //</a>
-
-        return React__default.createElement("div", {
-          style: style
-        }, React__default.createElement("div", {
-          style: linkStyle
-        }, React__default.createElement(ZoomPlusIcon, {
-          width: iconWidth,
-          height: iconHeight
-        })), React__default.createElement("div", {
-          style: linkStyle
-        }, React__default.createElement(ZoomMinusIcon, {
-          width: iconWidth,
-          height: iconHeight
-        })), React__default.createElement("div", {
-          style: linkStyle
-        }, React__default.createElement(AutoscaleIcon, {
-          width: iconWidth,
-          height: iconHeight
-        })), React__default.createElement("a", {
-          href: "https://plot.ly/",
-          target: "_blank",
-          rel: "noreferrer noopener",
-          "data-title": "Produced with Plotly",
-          style: linkStyle
-        }, React__default.createElement(PlotlyIcon, {
-          width: iconWidth,
-          height: iconHeight
-        })));
-      }
-    }]);
-
-    return ModBar;
-  }(React.PureComponent);
-
   /**
    * Creates a DOM element with absolute position that can have scrollbars.
    * However, no actual content is displayed by this element.
@@ -11632,12 +11476,6 @@
           cursor: this.state.mouse.cursorState,
           position: "relative"
         });
-
-        var modBar = {
-          position: "absolute",
-          right: 0,
-          opacity: 0.8
-        };
         var showModBar = this.props.showModBar && this.state.mouse.isMouseWithin;
         var canvasStyle = {
           position: "absolute",
@@ -11650,9 +11488,7 @@
         return React__default.createElement("div", _extends({
           style: style,
           ref: this.container
-        }, otherProps), showModBar && React__default.createElement(ModBar, {
-          style: modBar
-        }, " Plotly Modbar"), React__default.createElement("canvas", {
+        }, otherProps), showModBar && React__default.createElement("div", null), React__default.createElement("canvas", {
           style: canvasStyle,
           ref: this.canvasBuffers[0],
           width: this.props.width,
